@@ -1,7 +1,6 @@
 // App.jsx
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { motion } from "framer-motion";
 import "./App.css";
 import { Box } from "./box";
 import SearchPage from "./searchPage";
@@ -26,7 +25,14 @@ function App() {
         <button onClick={removeBox}>Remove Box</button>
         <div className="box-grid">
           {Array.from({ length: boxCount }, (_, i) => (
-            <Box key={i} />
+            <motion.div 
+            key={i}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            >
+              <Box />
+            </motion.div>
           ))}
         </div>
       </div>

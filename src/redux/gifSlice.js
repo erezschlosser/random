@@ -18,7 +18,7 @@ export const fetchGifs = createAsyncThunk("Gifs/fetchGifs", async (searchTerm, {
     } catch (error) {
         return rejectWithValue(error.message);
     }
-    
+
 });
 
 const gifSlice = createSlice({

@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 const API_KEY = 'XyNHp83nRSpqSG7b6e6h9mMUP8bAlFJa';
 const BASE_URL = "https://api.giphy.com/v1/gifs/search";
 
-export const fetchGifs = createAsyncThunk("Gifs/fetchGifs", async (searchTerm, {rejectWithValue}) => {
+export const fetchGifs = createAsyncThunk("gifs/fetchGifs", async (searchTerm, {rejectWithValue}) => {
     try {
         const response = await fetch(`${BASE_URL}?api_key=${API_KEY}&q=${searchTerm}&limit=10`);
         if (!response.ok) {

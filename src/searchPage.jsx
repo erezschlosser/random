@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGifs } from "./redux/gifSlice";
 
@@ -7,12 +7,16 @@ const SearchPage = () => {
   const dispatch = useDispatch();
   const { gifs, status, error } = useSelector((state) => state.gifs); // Get GIFs from Redux state
 
-  // Handle search submission
-  const handleSearch = () => {
-    if (query.trim() !== "") {
+  // debounce API calls
+  useEffect(() => {
+    if (query.trim() === '') return;
+
+    const delay = setTimeout(() => {
       dispatch(fetchGifs(query));
-    }
-  };
+    }, 500);
+
+    return () => clearTimeout(delay); 
+  }, [query, dispatch]);
 
   return (
     <div style={{ textAlign: "center", padding: "20px" }}>
@@ -24,18 +28,15 @@ const SearchPage = () => {
         placeholder="Type something..."
         style={{ padding: "10px", width: "250px", marginRight: "10px" }}
       />
-      <button onClick={handleSearch} style={{ padding: "10px 15px", cursor: "pointer" }}>
-        Search
-      </button>
 
       {/* Loading State */}
       {status === "loading" && <p>Loading...</p>}
 
       {/* Error State */}
-      {status === "failed" && <p style={{ color: "red" }}>Error: {error}</p>}
+      {status === "failed" && <p>Error: {error}</p>}
 
-      {/* Display GIFs */}
-      <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", marginTop: "20px" }}>
+      {/* GIFs Display */}
+      <div>
         {gifs.map((gif) => (
           <img key={gif.id} src={gif.images.fixed_height.url} alt={gif.title} style={{ margin: "10px" }} />
         ))}

@@ -1,7 +1,7 @@
 import "./App.css";
 import SearchPage from "./searchPage";
 import BoxPlay from "./boxPlay";
-
+import Nav from "./nav/nav";
 
 function App() {
 

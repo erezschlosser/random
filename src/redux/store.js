@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import gifReducer from "./gifSlice";
+import dogReducer from "./dogSlice";
 
 const store = configureStore({
   reducer: {
-    gifs: gifReducer, // Adding the GIF slice to the store
+    gifs: gifReducer, 
+    dogs: dogReducer, 
   },
 });
 

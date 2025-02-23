@@ -1,7 +1,8 @@
 import "./App.css";
 import SearchPage from "./searchPage";
 import BoxPlay from "./boxPlay";
-import Nav from "./nav/nav";
+import SplineAPITest from "./splineTest/splineTest";
+import Dog from "./dog";
 
 function App() {
 
@@ -13,7 +14,9 @@ function App() {
       <div>
         <SearchPage />
       </div>
-      
+      <div>
+        <Dog />
+      </div>
     </>
   );
 }
